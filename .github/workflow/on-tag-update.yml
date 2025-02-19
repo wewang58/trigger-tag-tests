@@ -1,0 +1,25 @@
+name: On Tag Update
+on:
+  push:
+    tags:
+      - 'v*'  # 匹配以 'v' 开头的标签，例如 v1.0.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print tag information
+        run: |
+          echo "The tag that triggered this workflow is: ${{ github.ref }}"
+          echo "Tag name: ${{ github.ref_name }}"
+
+      - name: Run custom script
+        run: |
+           touch test.file
+           echo "This is a custom action triggered by a tag update!"
+          # 在这里添加你希望执行的脚本或命令」
+—————————
